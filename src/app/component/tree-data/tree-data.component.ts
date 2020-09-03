@@ -9,9 +9,25 @@ import { product } from '../../staData';
 })
 export class TreeDataComponent implements OnInit {
 
+    product = product;
+    choiceId: number;
+
     constructor() { }
 
+    findStartItem(arr: any[]): number {
+        for (let item of arr) {
+            if (item.children) {
+                let id = this.findStartItem(item.children);
+                if (id) return id;
+            } else {
+                return item.id
+            }
+        }
+        return null
+    }
+
     ngOnInit(): void {
+        this.choiceId = this.findStartItem(this.product);
     }
 
 }

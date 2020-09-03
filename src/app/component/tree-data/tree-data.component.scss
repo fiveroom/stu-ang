@@ -1,0 +1,58 @@
+@mixin oneTreeS {
+    padding: 15px 0px 14px;
+    box-sizing: border-box;
+    border-bottom: 1px solid rgb(235, 235, 235);
+}
+
+@mixin treeFont {
+    font-size: 14px;
+    line-height: 18px;
+}
+
+$activeFontC: rgb(51, 51, 51);
+$activeBgc:#dedede;
+$hoverBgc:#ebebeb;
+
+.tree {
+    &-head {
+        box-sizing: border-box;
+        border-bottom: 1px solid rgb(235, 235, 235);
+        padding: 15px 0px 14px;
+        @include oneTreeS;
+
+        &-h2 {
+            color: $activeFontC;
+            padding: 0px 16px;
+            @include treeFont;
+        }
+
+    }
+
+    &-one {
+        @include oneTreeS;
+        display: flex;
+        justify-content: space-between;
+        padding: 15px 16px 14px;
+        cursor: pointer;
+
+        span {
+            @include treeFont;
+            color: #555555;
+        }
+
+        &:hover {
+            background-color: $hoverBgc;
+            color: #000;
+        }
+
+        &-child {
+            padding-left: 28px;
+        }
+
+        &--active {
+            background-color: $activeBgc !important;
+            color: $activeFontC !important;
+        }
+
+    }
+}
