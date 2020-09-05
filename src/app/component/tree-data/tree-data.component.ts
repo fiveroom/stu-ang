@@ -9,6 +9,8 @@ import { product } from '../../staData';
 })
 export class TreeDataComponent implements OnInit {
 
+    product = product;
+
     constructor() { }
 
     ngOnInit(): void {

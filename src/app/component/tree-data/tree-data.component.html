@@ -1,6 +1,6 @@
 <div *ngFor="let proItem of product;index as ind">
     <div *ngIf="!!proItem.children">
-        <header></header>
+        <header>{{ind}}</header>
     </div>
     <div *ngIf="!proItem.children">
 
