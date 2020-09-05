@@ -26,6 +26,10 @@ export class TreeDataComponent implements OnInit {
         return null
     }
 
+    openChild(){
+
+    }
+
     ngOnInit(): void {
         this.choiceId = this.findStartItem(this.product);
     }
