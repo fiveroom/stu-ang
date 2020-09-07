@@ -1,21 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 import { product } from '../../staData';
-
-interface ProItem {
-    name: string,
-    price: number,
-    description: string,
-    id: number,
-    fId: number,
-}
-
-interface ProFItem {
-    title: string,
-    id: number,
-    fId: number,
-    children: ProItem[]
-}
+import {IProFItem} from '../../DataStru/proAbout';
 
 @Component({
     selector: 'app-tree-data',
@@ -24,6 +10,8 @@ interface ProFItem {
 })
 
 export class TreeDataComponent implements OnInit {
+
+    @Output() outProID = new EventEmitter();
 
     product = product;
     choiceId: number;
@@ -42,14 +30,18 @@ export class TreeDataComponent implements OnInit {
         }
         return null
     }
-
-    openChild(proItem: ProFItem) {
+    chliceCPId(id: number) {
+        this.choiceId = id;
+        this.outProID.emit(id);
+    }
+    openChild(proItem: IProFItem) {
         let ind = this.choiceFIdArr.findIndex(it => it == proItem.id);
         ind != -1 ? this.choiceFIdArr.splice(ind, 1) : this.choiceFIdArr.push(proItem.id);
     }
 
     ngOnInit(): void {
         this.choiceId = this.findStartItem(this.product);
+        this.outProID.emit(this.choiceId);
         this.product.forEach(it => {
             it.children && this.choiceFIdArr.push(it.id);
         })

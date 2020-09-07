@@ -1,1 +1,27 @@
-<h2></h2>
+<div *ngIf="currPro">
+    <!-- <nz-descriptions nzTitle="产品详情">
+        <nz-descriptions-item nzTitle="">{{currPro.name}}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Telephone">18100000000</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Live">Hangzhou, Zhejiang</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Remark">Empty</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Address">
+            No. 18, Wantang Road, Xihu District, Hangzhou, Zhejiang, China
+        </nz-descriptions-item>
+    </nz-descriptions> -->
+    <h3>{{currPro.name}}</h3>
+    <p>
+        <span>价格:</span>
+        <span>{{currPro.price}}</span>
+    </p>
+    <p>
+        <span>备注:</span>
+        <span>{{currPro.description}}</span>
+    </p>
+    <button nz-button nzType="primary" (click)="addProToSer()" [disabled]="proSerHas()">
+        {{proSerHas() ? '已添加' : '添加'}}
+    </button>
+    <!-- <i nz-icon [nzType]="'check-circle'" [nzTheme]="'twotone'" [nzTwotoneColor]="'#52c41a'"></i> -->
+</div>
+<div *ngIf="!currPro">
+    请选择
+</div>

@@ -1,27 +1,21 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 
 import { product } from '../../staData';
-
-interface ProItem {
-    name: string,
-    price: number,
-    description: string,
-    id: number,
-    fId: number,
-}
+import { IProItem } from '../../DataStru/proAbout';
+import { ProListService } from '../../service/pro-list.service';
 
 @Component({
     selector: 'app-pro-detail',
     templateUrl: './pro-detail.component.html',
     styleUrls: ['./pro-detail.component.scss']
 })
-export class ProDetailComponent implements OnInit {
+export class ProDetailComponent implements OnInit, OnChanges {
     @Input() proId: number;
-    currPro: ProItem;
+    currPro: IProItem;
 
-    constructor() { }
+    constructor(private proService: ProListService) { }
 
-    findProById(proId: number, arrData: any[]) {
+    findProById(proId: number, arrData: any[]): IProItem {
         for (let proItem of arrData) {
             if (proItem.children) {
                 let obj = this.findProById(proId, proItem.children);
@@ -33,9 +27,24 @@ export class ProDetailComponent implements OnInit {
         return null
     }
 
-    ngOnInit(): void {
-        this.currPro = this.findProById(this.proId, product);
+    addProToSer() {
+        this.proService.addProList(this.currPro);
+    }
 
+    proSerHas(){
+        return this.proService.hasProInList(this.currPro.id) != -1
+        // return false
+    }
+
+    ngOnInit(): void {
+        // this.currPro = this.findProById(this.proId, product);
+    }
+
+    ngOnChanges(changes: SimpleChanges) {
+        let proID = changes['proId'];
+        if (proID.currentValue) {
+            this.currPro = this.findProById(this.proId, product);
+        }
     }
 
 }

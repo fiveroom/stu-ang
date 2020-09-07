@@ -1,0 +1,13 @@
+<div class="box">
+    <header class="box-header">
+    </header>
+    <aside class="box-aside">
+        <app-tree-data (outProID)="proId = $event"></app-tree-data>
+    </aside>
+    <main class="box-main">
+        <app-pro-detail [proId]="proId"></app-pro-detail>
+    </main>
+    <section class="box-list">
+        <app-pro-list></app-pro-list>
+    </section>
+</div>

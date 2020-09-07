@@ -1,0 +1,26 @@
+.box {
+    height: 100%;
+    display: grid;
+    grid-template-areas:
+        'aside main'
+        'aside list';
+    grid-template-columns: 200px 1fr;
+    grid-template-rows: repeat(2, 50%);
+
+    &-aside {
+        grid-area: aside;
+        // box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.1);
+        background-color: #f5f5f5;
+    }
+
+    &-main {
+        grid-area: main;
+        padding: 10px;
+    }
+
+    &-list {
+        grid-area: list;
+        padding: 10px;
+        overflow: auto;
+    }
+}

@@ -14,13 +14,13 @@
                     [style.height.px]="choiceFIdArr.includes(proItem.id) ? 48 * proItem.children.length : 0">
                     <li *ngFor="let item of proItem.children"
                         [class]="{'tree-one-child': true,'tree-one': true, 'tree-one--active': item.id == choiceId}"
-                        (click)="choiceId = item.id">
+                        (click)="chliceCPId(item.id)">
                         <span>{{item.name}}</span>
                     </li>
                 </ul>
             </div>
             <div *ngIf="!proItem.children" [class]="{'tree-one': true, 'tree-one--active': proItem.id == choiceId}"
-                (click)="choiceId = proItem.id">
+                (click)="chliceCPId(proItem.id)">
                 <span>{{proItem.name}}</span>
             </div>
         </div>
